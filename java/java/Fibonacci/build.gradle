@@ -1,0 +1,17 @@
+def myMain = 'fibonacci.Fibonacci'
+
+apply plugin: 'java'
+apply plugin: 'application'
+mainClassName = myMain
+
+task fib(type: JavaExec) {
+   classpath = sourceSets.main.runtimeClasspath
+   main = myMain
+   if (project.hasProperty('n')) args project.getProperty('n');
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': myMain
+    }
+}
